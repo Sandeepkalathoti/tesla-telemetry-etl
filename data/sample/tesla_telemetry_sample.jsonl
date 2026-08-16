@@ -1,0 +1,5 @@
+{"vehicle_id":"TESLA001","timestamp":"2026-08-15T10:00:00Z","speed":65.5,"battery_level":82.3,"latitude":17.3850,"longitude":78.4867}
+{"vehicle_id":"TESLA002","timestamp":"2026-08-15T10:01:00Z","speed":72.1,"battery_level":76.8,"latitude":17.4065,"longitude":78.4772}
+{"vehicle_id":"TESLA003","timestamp":"2026-08-15T10:02:00Z","speed":48.7,"battery_level":91.2,"latitude":17.3616,"longitude":78.4747}
+{"vehicle_id":"TESLA001","timestamp":"2026-08-15T10:03:00Z","speed":68.2,"battery_level":81.9,"latitude":17.3850,"longitude":78.4867}
+{"vehicle_id":"TESLA002","timestamp":"2026-08-15T10:04:00Z","speed":70.4,"battery_level":76.1,"latitude":17.4065,"longitude":78.4772}
