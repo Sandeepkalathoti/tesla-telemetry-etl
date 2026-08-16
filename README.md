@@ -1,105 +1,233 @@
-Tesla Vehicle Telemetry ETL Pipeline
-Major data engineering project for processing Tesla-style connected vehicle telemetry from Amazon S3, orchestrating ETL with Apache Airflow, and loading curated near-real-time monitoring tables into Snowflake.
+# Tesla Telemetry ETL Pipeline
 
-Project Scope
-This project is designed as a portfolio-grade, end-to-end ETL system. It covers ingestion, schema validation, data quality checks, transformations, warehouse loading, orchestration, observability, and deployment-ready configuration.
+An end-to-end data engineering project for processing Tesla vehicle telemetry data using Python, Apache Airflow, Snowflake, Docker, Pytest, and GitHub Actions.
 
-Architecture
-flowchart LR
-    A["Tesla Vehicle Telemetry Producers"] --> B["Amazon S3 Raw Zone"]
-    B --> C["Airflow DAG"]
-    C --> D["Python ETL Package"]
-    D --> E["Validated Parquet Files"]
-    E --> F["Snowflake Internal Stage"]
-    F --> G["Snowflake Staging Tables"]
-    G --> H["Curated Monitoring Tables"]
-    H --> I["Near-Real-Time Monitoring Dashboards"]
-    C --> J["Processed S3 Object Control Table"]
+## Project Overview
 
+This project demonstrates a production-style ETL pipeline that extracts Tesla vehicle telemetry data from JSONL files, validates and transforms the data using Python, and prepares it for loading into Snowflake.
 
-Features
-S3 raw telemetry ingestion with partition-aware paths.
-Incremental object processing using a Snowflake PROCESSED_S3_OBJECTS control table.
-Schema enforcement for vehicle telemetry events.
-Data quality rules for battery, speed, location, odometer, timestamp, duplicate events, and VIN fields.
-Transformations for trip metrics, battery health, alerts, and monitoring aggregates.
-Snowflake stage, staging tables, COPY INTO, and MERGE based curated loading.
-Airflow DAG with extract, validate, transform, load, and quality-gate tasks.
-Local sample data and tests for fast development.
-Environment-based configuration for AWS, Snowflake, and Airflow.
-GitHub Actions workflow for automated tests.
-Repository Structure
-.
-|-- .github/workflows/ci.yml
-|-- dags/
-|   `-- tesla_telemetry_etl_dag.py
-|-- data/
-|   `-- sample/
-|       `-- tesla_telemetry_sample.jsonl
-|-- docs/
-|   |-- architecture.md
-|   `-- data_dictionary.md
-|-- snowflake/
-|   |-- 001_create_database_schema.sql
-|   |-- 002_create_tables.sql
-|   `-- 003_curated_models.sql
-|-- src/
-|   `-- telemetry_etl/
-|       |-- config.py
-|       |-- extract.py
-|       |-- load.py
-|       |-- quality.py
-|       |-- schemas.py
-|       `-- transform.py
-|-- tests/
-|   |-- test_quality.py
-|   `-- test_transform.py
-|-- docker-compose.yml
-|-- pyproject.toml
-|-- requirements.txt
-`-- .env.example
-Quick Start
-Create and activate a virtual environment.
-Install dependencies:
-pip install -e ".[dev]"
-Run tests:
+Apache Airflow is used to orchestrate the ETL workflow, while Pytest is used for automated testing and GitHub Actions provides CI automation.
+
+## Architecture
+
+```text
+Tesla Telemetry JSONL
+        |
+        v
+    Extract
+        |
+        v
+   Transform
+        |
+        v
+ Data Quality
+        |
+        v
+      Load
+        |
+        v
+    Snowflake
+        |
+        v
+ Curated Models
+
+Apache Airflow
+      |
+      +---- Extract
+      +---- Transform
+      +---- Quality
+      +---- Load
+
+GitHub Actions
+      |
+      +---- Install Dependencies
+      +---- Run Tests
+
+## TECHNOLOGY STACK
+
+| Technology     | Purpose                |
+| -------------- | ---------------------- |
+| Python         | ETL development        |
+| Apache Airflow | Workflow orchestration |
+| Snowflake      | Cloud data warehouse   |
+| SQL            | Data modeling          |
+| Pytest         | Automated testing      |
+| Docker         | Containerization       |
+| GitHub Actions | CI/CD                  |
+| JSONL          | Source data format     |
+
+##PROJECT STRUCTURE
+
+tesla-telemetry-etl/
+│
+├── .github/
+│   └── workflows/
+│       └── ci.yml
+│
+├── dags/
+│   └── tesla_telemetry_etl_dag.py
+│
+├── data/
+│   └── sample/
+│       └── tesla_telemetry_sample.jsonl
+│
+├── docs/
+│   ├── architecture.md
+│   └── data_dictionary.md
+│
+├── snowflake/
+│   ├── 001_create_database_schema.sql
+│   ├── 002_create_tables.sql
+│   └── 003_curated_models.sql
+│
+├── src/
+│   └── telemetry_etl/
+│       ├── config.py
+│       ├── extract.py
+│       ├── load.py
+│       ├── quality.py
+│       ├── schemas.py
+│       └── transform.py
+│
+├── tests/
+│   ├── test_quality.py
+│   └── test_transform.py
+│
+├── docker-compose.yml
+├── pyproject.toml
+├── requirements.txt
+├── .env.example
+└── .gitignore
+
+##ETL Workflow
+1. Extract
+Telemetry data is read from a JSONL file.
+The extraction module:
+Reads the source file.
+Parses each JSON record.
+Validates JSON structure.
+Returns telemetry records as Python dictionaries.
+
+2. Transform
+The transformation layer:
+Standardizes vehicle IDs.
+Converts timestamps into Python datetime objects.
+Converts numeric fields into appropriate numeric types.
+Produces a standardized telemetry structure.
+
+3. Data Quality
+The quality layer validates:
+Required fields
+Vehicle ID
+Speed
+Battery percentage
+Latitude
+Longitude
+Timestamp
+Invalid records are separated from valid records.
+
+4. Load
+Validated records are prepared for loading into Snowflake.
+The Snowflake data model contains:
+Raw telemetry table
+Curated telemetry table
+Vehicle-level telemetry summary view
+
+5. Orchestration
+Apache Airflow manages the ETL workflow:
+Extract → Transform → Quality → Load
+The DAG is configured to run daily.
+
+##Snowflake Data Model
+Database
+TESLA_TELEMETRY_DB
+
+Schemas
+RAW
+CURATED
+
+Raw Table
+TESLA_TELEMETRY_RAW
+
+Curated Table
+TESLA_TELEMETRY
+
+Curated View
+TESLA_TELEMETRY_SUMMARY
+
+The summary view provides vehicle-level metrics such as:
+Total telemetry events
+Average speed
+Maximum speed
+Average battery level
+Minimum battery level
+First event timestamp
+Last event timestamp
+
+##Testing
+The project uses Pytest for automated testing.
+
+##Tests cover:
+Valid telemetry records
+Invalid speed values
+Invalid battery levels
+Invalid latitude values
+Invalid longitude values
+Missing vehicle IDs
+Multiple telemetry records
+
+##Transformation logic
+Run tests locally using:
 pytest
-Run the local ETL sample:
-python -m telemetry_etl.transform data/sample/tesla_telemetry_sample.jsonl build/curated
-On Windows PowerShell:
 
-.\scripts\run_local_etl.ps1
-Start Airflow locally:
-docker compose up airflow-init
-docker compose up
-Airflow UI will be available at http://localhost:8080 with username airflow and password airflow.
+##Running with Docker
+Start the Airflow environment using:
+docker compose up -d
 
-Sample Output
-Running the local ETL sample creates curated Parquet files in build/curated:
+Airflow UI:
+http://localhost:8080
+The project uses Docker volumes to make DAGs, source code, sample data, and tests available inside the Airflow container.
 
-telemetry_enriched.parquet
-vehicle_hourly_metrics.parquet
-Snowflake Setup
-Run the SQL files in order:
+##Environment Configuration
 
-snowflake/001_create_database_schema.sql
-snowflake/002_create_tables.sql
-snowflake/003_curated_models.sql
-The Airflow DAG uploads curated Parquet files to TELEMETRY_INTERNAL_STAGE, copies them into staging tables, merges them into curated tables, and records processed S3 keys after a successful load.
+Create a local .env file based on .env.example.
+Do not commit real credentials or secrets to GitHub.
 
-Environment Variables
-Copy .env.example to .env and fill in values for AWS, Snowflake, and Airflow.
+Example:
+SNOWFLAKE_ACCOUNT=your_account_identifier
+SNOWFLAKE_USER=your_username
+SNOWFLAKE_PASSWORD=your_password
+SNOWFLAKE_WAREHOUSE=your_warehouse
 
-Major Project Evaluation Points
-This project qualifies as a major data engineering project because it includes:
+##CI/CD
 
-Cloud object storage ingestion.
-Workflow orchestration.
-Warehouse modeling.
-Data validation and quality gates.
-Incremental loading and processed-file tracking.
-Snowflake staging, copy, and merge loading.
-Modular Python package.
-Test coverage and CI.
-Deployment-ready local Airflow environment.
-Documentation for architecture, schemas, and operations.
+GitHub Actions automatically runs the project tests when changes are pushed to the main branch or when a pull request is created.
+
+Workflow:
+
+Git Push / Pull Request
+          |
+          v
+    Checkout Code
+          |
+          v
+    Setup Python
+          |
+          v
+ Install Dependencies
+          |
+          v
+       Run Pytest
+
+##Future Improvements
+Add real Tesla telemetry ingestion.
+Integrate AWS S3 as the source layer.
+Add Snowflake bulk loading using stages and COPY INTO.
+Add incremental loading.
+Add data partitioning.
+Add monitoring and alerting.
+Add Airflow retries and failure notifications.
+Add Terraform infrastructure provisioning.
+Add dbt models for the curated layer.
+Add dashboard integration using Power BI or Tableau.
+
