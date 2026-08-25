@@ -1,0 +1,541 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #0b1020;
+    color: #ffffff;
+    line-height: 1.6;
+}
+
+/* Navigation */
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 8%;
+    background: #111827;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid #263041;
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 25px;
+}
+
+.nav-links a {
+    color: #bfc8d8;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+.nav-links a:hover {
+    color: #ffffff;
+}
+
+/* Hero */
+
+.hero {
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    padding: 80px 12%;
+    background:
+        linear-gradient(135deg, rgba(18, 26, 45, 0.95), rgba(8, 12, 25, 0.98));
+}
+
+.hero-content {
+    max-width: 850px;
+}
+
+.tag {
+    color: #38bdf8;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+.hero h1 {
+    font-size: 64px;
+    line-height: 1.1;
+    margin-bottom: 25px;
+}
+
+.hero h1 span {
+    color: #38bdf8;
+}
+
+.hero-text {
+    max-width: 700px;
+    color: #bfc8d8;
+    font-size: 19px;
+    margin-bottom: 35px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.hero button,
+.github-btn {
+    padding: 14px 24px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.hero button {
+    background: #38bdf8;
+    color: #07111f;
+    border: none;
+}
+
+.hero button:hover {
+    transform: translateY(-3px);
+}
+
+.github-btn {
+    border: 1px solid #344155;
+    color: white;
+}
+
+.github-btn:hover {
+    background: #1b2536;
+}
+
+/* Statistics */
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 60px 10%;
+    background: #111827;
+}
+
+.stat-card {
+    background: #172033;
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    border: 1px solid #263041;
+}
+
+.stat-card h2 {
+    color: #38bdf8;
+    font-size: 35px;
+}
+
+.stat-card p {
+    color: #bfc8d8;
+}
+
+/* General Section */
+
+.section {
+    padding: 100px 10%;
+}
+
+.section-heading {
+    text-align: center;
+    max-width: 750px;
+    margin: 0 auto 60px;
+}
+
+.section-heading p {
+    color: #38bdf8;
+    font-size: 13px;
+    letter-spacing: 2px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.section-heading h2 {
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+.section-heading span {
+    color: #9ca9bd;
+}
+
+/* Pipeline */
+
+.pipeline-container {
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    gap: 15px;
+}
+
+.pipeline-card {
+    background: #111827;
+    border: 1px solid #263041;
+    border-radius: 15px;
+    padding: 30px;
+    flex: 1;
+    min-height: 270px;
+    transition: 0.3s;
+}
+
+.pipeline-card:hover {
+    transform: translateY(-8px);
+    border-color: #38bdf8;
+}
+
+.step-number {
+    color: #38bdf8;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.icon {
+    font-size: 35px;
+    margin: 20px 0;
+}
+
+.pipeline-card h3 {
+    margin-bottom: 12px;
+}
+
+.pipeline-card p {
+    color: #9ca9bd;
+    font-size: 14px;
+}
+
+.connector {
+    display: flex;
+    align-items: center;
+    font-size: 28px;
+    color: #38bdf8;
+}
+
+/* Architecture */
+
+.architecture {
+    padding: 100px 10%;
+    background: #111827;
+}
+
+.architecture-flow {
+    max-width: 700px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.arch-box {
+    width: 100%;
+    max-width: 450px;
+    padding: 25px;
+    background: #172033;
+    border: 1px solid #2b3850;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.arch-box span {
+    font-size: 30px;
+}
+
+.arch-box h3 {
+    margin: 8px 0;
+}
+
+.arch-box p {
+    color: #9ca9bd;
+    font-size: 14px;
+}
+
+.arch-arrow {
+    font-size: 30px;
+    color: #38bdf8;
+    margin: 8px 0;
+}
+
+/* Airflow */
+
+.orchestration {
+    padding: 100px 12%;
+}
+
+.orchestration-content {
+    max-width: 1000px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 80px;
+}
+
+.orchestration h2 {
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+.orchestration p:not(.tag) {
+    color: #9ca9bd;
+    max-width: 600px;
+}
+
+.airflow-flow {
+    margin-top: 30px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.airflow-flow span {
+    background: #172033;
+    padding: 10px 15px;
+    border-radius: 7px;
+}
+
+.airflow-flow b {
+    color: #38bdf8;
+}
+
+.airflow-icon {
+    font-size: 100px;
+}
+
+/* Snowflake Model */
+
+.snowflake-section {
+    background: #111827;
+}
+
+.data-model {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.model-card {
+    background: #172033;
+    border: 1px solid #263041;
+    border-radius: 10px;
+    padding: 25px;
+    text-align: center;
+    min-width: 190px;
+}
+
+.model-card span {
+    font-size: 11px;
+    color: #38bdf8;
+    letter-spacing: 1px;
+}
+
+.model-card h3 {
+    margin-top: 8px;
+    font-size: 15px;
+}
+
+.model-arrow {
+    font-size: 25px;
+    color: #38bdf8;
+}
+
+/* Tech Stack */
+
+.tech-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.tech-card {
+    background: #111827;
+    border: 1px solid #263041;
+    padding: 30px 15px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 30px;
+    transition: 0.3s;
+}
+
+.tech-card:hover {
+    transform: translateY(-5px);
+    border-color: #38bdf8;
+}
+
+.tech-card span {
+    display: block;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+/* Testing */
+
+.testing {
+    padding: 100px 10%;
+    background: #111827;
+    text-align: center;
+}
+
+.testing h2 {
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+.testing > p {
+    color: #9ca9bd;
+    max-width: 700px;
+    margin: auto;
+}
+
+.ci-flow {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.ci-flow span {
+    background: #172033;
+    border: 1px solid #263041;
+    padding: 15px 20px;
+    border-radius: 8px;
+}
+
+.ci-flow b {
+    color: #38bdf8;
+}
+
+/* Footer */
+
+footer {
+    padding: 60px 10%;
+    text-align: center;
+    background: #080c16;
+}
+
+footer h3 {
+    font-size: 24px;
+}
+
+footer > p {
+    color: #9ca9bd;
+    margin: 10px 0;
+}
+
+footer a {
+    display: inline-block;
+    margin: 15px 0;
+    color: #38bdf8;
+    text-decoration: none;
+}
+
+.copyright {
+    margin-top: 25px;
+    font-size: 13px;
+}
+
+/* Mobile Responsive */
+
+@media (max-width: 900px) {
+
+    .navbar {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .nav-links {
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .hero h1 {
+        font-size: 45px;
+    }
+
+    .stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .pipeline-container {
+        flex-direction: column;
+    }
+
+    .connector {
+        justify-content: center;
+        transform: rotate(90deg);
+    }
+
+    .orchestration-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 30px;
+    }
+
+    .airflow-flow {
+        justify-content: center;
+    }
+
+    .tech-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+@media (max-width: 500px) {
+
+    .hero {
+        padding: 70px 8%;
+    }
+
+    .hero h1 {
+        font-size: 36px;
+    }
+
+    .section-heading h2,
+    .orchestration h2,
+    .testing h2 {
+        font-size: 30px;
+    }
+
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+    .tech-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .section,
+    .architecture,
+    .testing {
+        padding: 70px 7%;
+    }
+
+}
