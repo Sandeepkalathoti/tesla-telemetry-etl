@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Tesla Telemetry ETL Pipeline</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">
+            ⚡ TESLA DATA PIPELINE
+        </div>
+
+        <div class="nav-links">
+            <a href="#overview">Overview</a>
+            <a href="#pipeline">Pipeline</a>
+            <a href="#architecture">Architecture</a>
+            <a href="#tech">Tech Stack</a>
+        </div>
+    </nav>
+
+
+    <!-- Hero Section -->
+    <section class="hero" id="overview">
+
+        <div class="hero-content">
+
+            <p class="tag">END-TO-END DATA ENGINEERING PROJECT</p>
+
+            <h1>
+                Tesla Telemetry
+                <span>ETL Pipeline</span>
+            </h1>
+
+            <p class="hero-text">
+                A production-style data engineering pipeline that extracts,
+                validates, transforms and prepares Tesla vehicle telemetry
+                data for loading into Snowflake.
+            </p>
+
+            <div class="hero-buttons">
+                <button onclick="scrollToSection('pipeline')">
+                    Explore Pipeline ↓
+                </button>
+
+                <a href="https://github.com/Sandeepkalathoti/tesla-telemetry-etl"
+                   target="_blank"
+                   class="github-btn">
+                    View Source Code ↗
+                </a>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Project Stats -->
+    <section class="stats">
+
+        <div class="stat-card">
+            <h2>4</h2>
+            <p>ETL Stages</p>
+        </div>
+
+        <div class="stat-card">
+            <h2>7+</h2>
+            <p>Technologies</p>
+        </div>
+
+        <div class="stat-card">
+            <h2>Daily</h2>
+            <p>Airflow Schedule</p>
+        </div>
+
+        <div class="stat-card">
+            <h2>CI/CD</h2>
+            <p>Automated Testing</p>
+        </div>
+
+    </section>
+
+
+    <!-- Pipeline -->
+    <section class="section" id="pipeline">
+
+        <div class="section-heading">
+            <p>DATA FLOW</p>
+            <h2>ETL Pipeline Workflow</h2>
+            <span>
+                The pipeline processes Tesla vehicle telemetry data
+                through multiple validation and transformation stages.
+            </span>
+        </div>
+
+
+        <div class="pipeline-container">
+
+            <div class="pipeline-card">
+                <div class="step-number">01</div>
+                <div class="icon">📥</div>
+                <h3>Extract</h3>
+                <p>
+                    Read Tesla telemetry records from JSONL source files
+                    and parse each record into Python dictionaries.
+                </p>
+            </div>
+
+            <div class="connector">→</div>
+
+            <div class="pipeline-card">
+                <div class="step-number">02</div>
+                <div class="icon">⚙️</div>
+                <h3>Transform</h3>
+                <p>
+                    Standardize vehicle IDs, convert timestamps,
+                    and transform numeric fields into proper data types.
+                </p>
+            </div>
+
+            <div class="connector">→</div>
+
+            <div class="pipeline-card">
+                <div class="step-number">03</div>
+                <div class="icon">✓</div>
+                <h3>Data Quality</h3>
+                <p>
+                    Validate required fields including speed, battery,
+                    latitude, longitude and timestamps.
+                </p>
+            </div>
+
+            <div class="connector">→</div>
+
+            <div class="pipeline-card">
+                <div class="step-number">04</div>
+                <div class="icon">❄️</div>
+                <h3>Load</h3>
+                <p>
+                    Prepare validated telemetry records for loading
+                    into the Snowflake cloud data warehouse.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Architecture -->
+    <section class="architecture" id="architecture">
+
+        <div class="section-heading">
+            <p>SYSTEM DESIGN</p>
+            <h2>Pipeline Architecture</h2>
+        </div>
+
+        <div class="architecture-flow">
+
+            <div class="arch-box source">
+                <span>🚗</span>
+                <h3>Tesla Telemetry</h3>
+                <p>JSONL Source Data</p>
+            </div>
+
+            <div class="arch-arrow">↓</div>
+
+            <div class="arch-box processing">
+                <span>🐍</span>
+                <h3>Python ETL</h3>
+                <p>Extract & Transform</p>
+            </div>
+
+            <div class="arch-arrow">↓</div>
+
+            <div class="arch-box quality">
+                <span>🛡️</span>
+                <h3>Data Quality</h3>
+                <p>Validation Layer</p>
+            </div>
+
+            <div class="arch-arrow">↓</div>
+
+            <div class="arch-box warehouse">
+                <span>❄️</span>
+                <h3>Snowflake</h3>
+                <p>RAW → CURATED</p>
+            </div>
+
+            <div class="arch-arrow">↓</div>
+
+            <div class="arch-box analytics">
+                <span>📊</span>
+                <h3>Curated Models</h3>
+                <p>Vehicle Analytics</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Airflow -->
+    <section class="orchestration">
+
+        <div class="orchestration-content">
+
+            <div>
+                <p class="tag">WORKFLOW ORCHESTRATION</p>
+
+                <h2>Powered by Apache Airflow</h2>
+
+                <p>
+                    Apache Airflow orchestrates the complete ETL workflow
+                    and manages task dependencies across Extract,
+                    Transform, Data Quality and Load stages.
+                </p>
+
+                <div class="airflow-flow">
+                    <span>Extract</span>
+                    <b>→</b>
+                    <span>Transform</span>
+                    <b>→</b>
+                    <span>Quality</span>
+                    <b>→</b>
+                    <span>Load</span>
+                </div>
+
+            </div>
+
+            <div class="airflow-icon">
+                🌬️
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Snowflake Model -->
+    <section class="section snowflake-section">
+
+        <div class="section-heading">
+            <p>DATA WAREHOUSE</p>
+            <h2>Snowflake Data Model</h2>
+        </div>
+
+        <div class="data-model">
+
+            <div class="model-card">
+                <span>DATABASE</span>
+                <h3>TESLA_TELEMETRY_DB</h3>
+            </div>
+
+            <div class="model-arrow">→</div>
+
+            <div class="model-card">
+                <span>SCHEMAS</span>
+                <h3>RAW / CURATED</h3>
+            </div>
+
+            <div class="model-arrow">→</div>
+
+            <div class="model-card">
+                <span>TABLES</span>
+                <h3>TELEMETRY DATA</h3>
+            </div>
+
+            <div class="model-arrow">→</div>
+
+            <div class="model-card">
+                <span>VIEW</span>
+                <h3>TELEMETRY SUMMARY</h3>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Tech Stack -->
+    <section class="section" id="tech">
+
+        <div class="section-heading">
+            <p>TOOLS & TECHNOLOGIES</p>
+            <h2>Technology Stack</h2>
+        </div>
+
+        <div class="tech-grid">
+
+            <div class="tech-card">🐍<span>Python</span></div>
+            <div class="tech-card">🌬️<span>Apache Airflow</span></div>
+            <div class="tech-card">❄️<span>Snowflake</span></div>
+            <div class="tech-card">🗄️<span>SQL</span></div>
+            <div class="tech-card">🐳<span>Docker</span></div>
+            <div class="tech-card">🧪<span>Pytest</span></div>
+            <div class="tech-card">⚙️<span>GitHub Actions</span></div>
+            <div class="tech-card">📄<span>JSONL</span></div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Testing & CI -->
+    <section class="testing">
+
+        <h2>Automated Testing & CI/CD</h2>
+
+        <p>
+            Pytest validates telemetry records and transformation logic,
+            while GitHub Actions automatically runs tests on pushes
+            and pull requests.
+        </p>
+
+        <div class="ci-flow">
+            <span>Git Push / Pull Request</span>
+            <b>→</b>
+            <span>Setup Python</span>
+            <b>→</b>
+            <span>Install Dependencies</span>
+            <b>→</b>
+            <span>Run Pytest</span>
+        </div>
+
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <h3>⚡ Tesla Telemetry ETL Pipeline</h3>
+
+        <p>
+            End-to-End Data Engineering Project
+        </p>
+
+        <a href="https://github.com/Sandeepkalathoti/tesla-telemetry-etl"
+           target="_blank">
+            View GitHub Repository ↗
+        </a>
+
+        <p class="copyright">
+            © 2026 Data Engineering Portfolio
+        </p>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
